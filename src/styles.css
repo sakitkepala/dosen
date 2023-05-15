@@ -1,0 +1,104 @@
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.layout {
+  max-width: 800px;
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.heading {
+  text-align: center;
+  font-size: 1.875rem;
+  font-weight: 500;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.table th {
+  padding: 1rem 1.5rem;
+  font-weight: normal;
+}
+
+.table td {
+  padding: 0.5rem;
+  vertical-align: middle;
+}
+
+.student-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.student-info > :nth-child(1) {
+  flex-shrink: 0;
+}
+
+.student-info > :nth-child(2) {
+  flex-grow: 1;
+  white-space: nowrap;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.row > td {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.row > td:first-child {
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.row > td:last-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.select {
+  width: 100%;
+  padding: 2px 4px;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}

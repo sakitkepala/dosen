@@ -7,6 +7,7 @@ export type SelectGradeProps = {
 function SelectGrade({ name, value = "", onChange }: SelectGradeProps) {
   return (
     <select
+      className="select"
       name={name}
       value={value || ""}
       onChange={(ev) => {

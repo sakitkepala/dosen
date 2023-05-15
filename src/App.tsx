@@ -9,35 +9,46 @@ function App() {
   const resultData = React.useMemo(() => makeResult(students), [students]);
 
   const setStudentGrade = (studentId: string, aspectIndex: number, grade: number) => {
-    setStudents((students) => {
-      return students.map((s) => {
+    setStudents((students) =>
+      students.map((s) => {
         if (s.id !== studentId) return s;
-        return { ...s, grades: s.grades.map((g, i) => (i === aspectIndex ? grade : g)) };
-      });
-    });
+        return {
+          ...s,
+          grades: s.grades.map((g, i) => (i === aspectIndex ? grade : g)),
+        };
+      })
+    );
   };
 
   return (
-    <div>
-      <h2>Aplikasi Penilaian Mahasiswa</h2>
+    <div className="layout">
+      <h1 className="heading">Aplikasi Penilaian Mahasiswa</h1>
 
-      <table>
+      <table className="table">
         <thead>
           <tr>
-            <td></td>
-            <td>Aspek Penilaian 1</td>
-            <td>Aspek Penilaian 2</td>
-            <td>Aspek Penilaian 3</td>
-            <td>Aspek Penilaian 4</td>
+            <th></th>
+            <th>Aspek Penilaian 1</th>
+            <th>Aspek Penilaian 2</th>
+            <th>Aspek Penilaian 3</th>
+            <th>Aspek Penilaian 4</th>
           </tr>
         </thead>
 
         <tbody>
           {students.map((student) => (
-            <tr key={student.id}>
+            <tr key={student.id} className="row">
               <td>
-                <div>
-                  <div>avatar</div>
+                <div className="student-info">
+                  <div>
+                    <img
+                      className="avatar"
+                      src="/student.jpg"
+                      alt="Student Avatar"
+                      width="24"
+                      height="24"
+                    />
+                  </div>
                   <div>{student.name}</div>
                 </div>
               </td>
@@ -74,8 +85,8 @@ function App() {
         </tbody>
       </table>
 
-      <div>
-        <button>Simpan</button>
+      <div className="action">
+        <button className="submit-button">Simpan</button>
       </div>
 
       <pre>{JSON.stringify(resultData, null, 2)}</pre>
