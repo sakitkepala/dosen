@@ -14,9 +14,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.layout {
+.main {
   max-width: 800px;
   margin: 4rem auto;
+}
+
+.layout {
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -101,4 +104,24 @@ body {
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.result-modal {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.heading-output {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.result-code {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.05);
 }
