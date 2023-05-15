@@ -1,4 +1,22 @@
+import * as React from "react";
+import type { Student } from "./types";
+import { SelectGrade } from "./components/select-grade";
+import { makeStudentData } from "./utils/make-student-data";
+import { makeResult } from "./utils/make-result";
+
 function App() {
+  const [students, setStudents] = React.useState<Student[]>(makeStudentData);
+  const resultData = React.useMemo(() => makeResult(students), [students]);
+
+  const setStudentGrade = (studentId: string, aspectIndex: number, grade: number) => {
+    setStudents((students) => {
+      return students.map((s) => {
+        if (s.id !== studentId) return s;
+        return { ...s, grades: s.grades.map((g, i) => (i === aspectIndex ? grade : g)) };
+      });
+    });
+  };
+
   return (
     <div>
       <h2>Aplikasi Penilaian Mahasiswa</h2>
@@ -15,51 +33,53 @@ function App() {
         </thead>
 
         <tbody>
-          {[...new Array(10)].map((_, i) => (
-            <tr key={i}>
+          {students.map((student) => (
+            <tr key={student.id}>
               <td>
                 <div>
                   <div>avatar</div>
-                  <div>Mahasiswa {i + 1}</div>
+                  <div>{student.name}</div>
                 </div>
               </td>
               <td>
-                <Select />
+                <SelectGrade
+                  name="grade-aspect-1"
+                  value={student.grades[0]?.toString() || ""}
+                  onChange={(value) => setStudentGrade(student.id, 0, Number(value))}
+                />
               </td>
               <td>
-                <Select />
+                <SelectGrade
+                  name="grade-aspect-2"
+                  value={student.grades[1]?.toString() || ""}
+                  onChange={(value) => setStudentGrade(student.id, 1, Number(value))}
+                />
               </td>
               <td>
-                <Select />
+                <SelectGrade
+                  name="grade-aspect-3"
+                  value={student.grades[2]?.toString() || ""}
+                  onChange={(value) => setStudentGrade(student.id, 2, Number(value))}
+                />
               </td>
               <td>
-                <Select />
+                <SelectGrade
+                  name="grade-aspect-4"
+                  value={student.grades[3]?.toString() || ""}
+                  onChange={(value) => setStudentGrade(student.id, 3, Number(value))}
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
-  );
-}
 
-function Select({
-  name,
-  value = "",
-  onChange,
-}: {
-  name: string;
-  value?: string;
-  onChange?: () => void;
-}) {
-  return (
-    <select name={name} value={value} onChange={onChange}>
-      {[...new Array(10)].map((_, i) => (
-        <option key={i} value={i + 1}>
-          {i + 1}
-        </option>
-      ))}
-    </select>
+      <div>
+        <button>Simpan</button>
+      </div>
+
+      <pre>{JSON.stringify(resultData, null, 2)}</pre>
+    </div>
   );
 }
 
